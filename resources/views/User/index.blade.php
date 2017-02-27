@@ -31,8 +31,15 @@
                         <td> {{$user->name }} </td>
                         <td> {{$user->email }} </td>
                         <td> {{$user->roles->name }} </td>
-                        <td class="text-center"> <a href="{{route('user.edit', $user->id)}}" class="btn blue" style="min-width: 70.25px"> Edit </a> </td>
-                        <td class="text-center"> <a class="btn btn-danger"> Delete </a> </td>
+                        <td class="text-center">
+                            <a href="{{route('user.edit', $user->id)}}" class="btn blue" style="min-width: 70.25px">    Edit 
+                            </a>
+                        </td>
+                        <td class="text-center"> 
+                            {!! Form::open(['method'=>'DELETE', 'action'=>['UserController@destroy', $user->id]]) !!}
+                                 {!! Form::submit('Delete', ['class'=>'btn btn-danger']) !!}
+                            {{Form::close()}}
+                        </td>
                     </tr>
                     <?php $count++ ?>
                     @endforeach
