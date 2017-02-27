@@ -149,7 +149,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							View All User</a>
 						</li>
 						<li>
-							<a href="index_2.html">
+							<a href="{{route('user.create')}}">
 							<i class="icon-plus"></i>
 							Create New User</a>
 						</li>

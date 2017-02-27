@@ -8,6 +8,8 @@ use App\Http\Requests;
 
 use App\User;
 
+use App\Roles;
+
 class UserController extends Controller
 {
     /**
@@ -17,7 +19,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(1);
+        $users = User::paginate(5);
         return view('User.index', compact('users'));
     }
 
@@ -28,7 +30,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $roles = Roles::lists('name', 'id');
+        return view('user.create', compact('roles'));
     }
 
     /**
@@ -39,7 +42,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+
+        $input['password'] = bcrypt($request->password);
+
+        User::create($input);
+
+        return redirect('/user');
     }
 
     /**
@@ -61,7 +70,11 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+
+        $roles = Roles::lists('name', 'id')->all();
+
+        return view('user.edit', compact('user', 'roles'));
     }
 
     /**
@@ -73,7 +86,20 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+
+        if(empty(trim($request->password))){
+            $input = $request->except('password');
+        }
+        else{
+            $input = $request->all();
+
+            $input['password'] = bcrypt($input['password']);
+        }
+
+        $user->update($input);
+
+        return redirect('/user');
     }
 
     /**
