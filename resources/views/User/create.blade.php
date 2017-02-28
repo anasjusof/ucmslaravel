@@ -29,13 +29,15 @@
 		    </div>
 		    <div class='form-group'>
 		        {!! Form::label('roles', 'Role : ') !!}
-		        {!! Form::select('roles_id', $roles, 0, ['class'=>'form-control']) !!}
+		        {!! Form::select('roles_id', $roles, null, ['class'=>'form-control']) !!}
 		    </div>
 		     <div class="form-group text-center">
 		        {!! Form::submit('Create User', ['class'=>'btn red']) !!}
 		    </div>
     	</div>
     	{{Form::close()}}
+
+    	@include('errors.validation-error')
     </div>
 </div>
 

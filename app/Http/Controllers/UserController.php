@@ -10,6 +10,8 @@ use App\User;
 
 use App\Roles;
 
+use App\Http\Requests\CreateUserRequest;
+
 class UserController extends Controller
 {
     /**
@@ -31,7 +33,7 @@ class UserController extends Controller
     public function create()
     {
         $roles = Roles::lists('name', 'id');
-        return view('user.create', compact('roles'));
+        return view('User.create', compact('roles'));
     }
 
     /**
@@ -40,7 +42,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateUserRequest $request)
     {
         $input = $request->all();
 
@@ -74,7 +76,7 @@ class UserController extends Controller
 
         $roles = Roles::lists('name', 'id')->all();
 
-        return view('user.edit', compact('user', 'roles'));
+        return view('User.edit', compact('user', 'roles'));
     }
 
     /**
@@ -84,7 +86,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateUserRequest $request, $id)
     {
         $user = User::find($id);
 

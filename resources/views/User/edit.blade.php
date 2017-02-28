@@ -37,6 +37,8 @@
 		    </div>
     	</div>
     	{{Form::close()}}
+
+    	@include('errors.validation-error')
     </div>
 </div>
 
