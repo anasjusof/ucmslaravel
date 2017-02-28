@@ -27,4 +27,22 @@ class User extends Authenticatable
     public function roles(){
         return $this->belongsTo('App\Roles');
     }
+
+    public function roleHQ(){
+        if($this->roles_id == 1){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function roleFranchisee(){
+        if($this->roles_id == 2 || $this->roles_id == 1){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }

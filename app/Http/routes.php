@@ -12,11 +12,26 @@
 */
 
 Route::get('/', function () {
-    return view('layouts.master');
+    return redirect('/user');
 });
 
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
-Route::resource('/user', 'UserController');
+Route::group(['middleware'=>'HQ'], function(){
+
+	Route::resource('/user', 'UserController');
+
+});
+
+Route::group(['middleware'=>'franchiseeMW'], function(){
+
+	#Custom route
+	Route::post('/changeFranchisee', ['uses'=>'StudentController@changeFranchisee']);
+
+	Route::post('/spamStudent', ['uses'=>'StudentController@spamStudent']);
+
+	Route::resource('/student', 'StudentController');
+
+});

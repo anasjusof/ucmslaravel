@@ -91,12 +91,12 @@ License: You must have a valid license purchased only from themeforest(the above
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 					<img alt="" class="img-circle" src="/assets/admin/layout/img/avatar3_small.jpg"/>
 					<span class="username username-hide-on-mobile">
-					Nick </span>
+					{{ Auth::user()->name }} </span>
 					<i class="fa fa-angle-down"></i>
 					</a>
 					<ul class="dropdown-menu dropdown-menu-default">
 						<li>
-							<a href="login.html">
+							<a href="{{ url('/logout') }}">
 							<i class="icon-key"></i> Log Out </a>
 						</li>
 					</ul>
@@ -164,7 +164,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					</a>
 					<ul class="sub-menu">
 						<li class="active">
-							<a href="index.html">
+							<a href="{{route('student.index')}}">
 							<i class="icon-users"></i>
 							View All Student</a>
 						</li>
@@ -237,7 +237,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="/assets/global/plugins/respond.min.js"></script>
 <script src="/assets/global/plugins/excanvas.min.js"></script> 
 <![endif]-->
-@yield('script')
+
 <script src="/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
 <script src="/assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
 <!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
@@ -293,6 +293,7 @@ jQuery(document).ready(function() {
    Tasks.initDashboardWidget();
 });
 </script>
+@yield('script')
 <!-- END JAVASCRIPTS -->
 </body>
 <!-- END BODY -->

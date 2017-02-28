@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Student;
+
+use App\User;
+
 class StudentController extends Controller
 {
     /**
@@ -15,7 +19,11 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
+        $students = Student::paginate(5);
+
+        $users = User::lists('name', 'id');
+
+        return view('student.index', compact('students', 'users'));
     }
 
     /**
@@ -82,5 +90,36 @@ class StudentController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function changeFranchisee(Request $request){
+
+        $input = $request->user_id;
+
+        $student_id = $request->student_id;
+
+        $student = Student::findOrFail($student_id); 
+
+        $student->user_id = $input;
+
+        $student->save();
+
+        return redirect()->back();
+    }
+
+    public function spamStudent(){
+        // for ($i=0; $i < 500 ; $i++) { 
+            
+        //     $student = new Student;
+        //     $student->user_id = 1;
+        //     $student->course_id = 1;
+        //     $student->name = "Spammer";
+        //     $student->status=1;
+        //     $student->code = "STD";
+
+        //     $student->save();
+        // }
+
+        return redirect()->back();
     }
 }

@@ -30,7 +30,7 @@
                         <td> {{ $count }} </td>
                         <td> {{$user->name }} </td>
                         <td> {{$user->email }} </td>
-                        <td> {{$user->roles->name }} </td>
+                        <td> {{$user->roles_id == 0 ? 'No Role' : $user->roles->name }} </td>
                         <td class="text-center">
                             <a href="{{route('user.edit', $user->id)}}" class="btn blue" style="min-width: 70.25px">    Edit 
                             </a>
