@@ -17,6 +17,7 @@
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
+                        <th><input type="checkbox" id="options"></th>
                         <th> # </th>
                         <th> Franchisee </th>
                         <th> Code </th>
@@ -30,6 +31,7 @@
                     <?php $currentPageTotalNumber = ($students->currentPage() - 1) * $students->perPage(); ?>
                     @foreach($students as $student)
                     <tr>
+                        <td><input type="checkbox" class="dafaq" name="checkBoxDeleteArray[]" form="bulk_delete" value="{{$student->id}}"></td>
                         <td> {{ $count + $currentPageTotalNumber}} </td>
                         <td> {{$student->user->name }} </td>
                         <td> {{$student->code }} </td>
@@ -60,7 +62,15 @@
             </table>
         </div>
     </div>
-    <div class="col-sm-12 pull-right">
+    <div class="col-sm-6 pull-left" style="margin-top: 15px;">
+        <form id="bulk_delete" action="/bulkDelete" method="POST">
+            {{ csrf_field() }}
+            <input type="submit" value="Bulk Delete" class="btn btn-danger">
+            <input type="hidden" name="_method" value="DELETE">
+        </form>     
+    </div>
+
+    <div class="col-sm-6 pull-right">
         <div class="pull-right"> 
             {{$students->render()}}
         </div>
@@ -105,6 +115,19 @@
        $('.editStudentModal').click(function(){
          $("#student_id").val($(this).data('student_id'));
          $('#editStudentModal').modal('show');
+       });
+    });
+
+    $(document).ready(function(){
+       $('#options').click(function(){
+            if(this.checked){
+                $('.checker').find('span').addClass('checked');
+                $("input.dafaq").prop('checked', true).show();
+            }
+            else{
+                $('.checker').find('span').removeClass('checked');
+                $("input.dafaq").prop('checked', false);
+            }
        });
     });
 

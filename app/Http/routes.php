@@ -29,6 +29,7 @@ Route::group(['middleware'=>'franchiseeMW'], function(){
 
 	#Custom route
 	Route::post('/changeFranchisee', ['uses'=>'StudentController@changeFranchisee']);
+	Route::delete('/bulkDelete', ['uses'=>'StudentController@bulkDelete']);
 
 	Route::post('/spamStudent', ['uses'=>'StudentController@spamStudent']);
 

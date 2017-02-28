@@ -122,4 +122,17 @@ class StudentController extends Controller
 
         return redirect()->back();
     }
+
+    public function bulkDelete(Request $request){
+
+        /*$students = Student::findOrFail($request->checkBoxDeleteArray);
+
+        foreach($students as $student){
+            $student->delete();
+        }
+
+        return redirect()->back();*/
+
+        return $request->all();
+    }
 }
