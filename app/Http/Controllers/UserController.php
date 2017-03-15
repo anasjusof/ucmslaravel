@@ -118,4 +118,13 @@ class UserController extends Controller
 
         return redirect('/user');
     }
+
+    public function updateAjax(Request $request){
+        $user = User::find($request->user_id);
+
+        $input = $request->except('user_id', '_token');
+
+        $user->update($input);
+
+    }
 }

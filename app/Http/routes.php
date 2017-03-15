@@ -20,7 +20,7 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 
 Route::group(['middleware'=>'HQ'], function(){
-
+	Route::post('/updateAjax', ['uses'=>'UserController@updateAjax']);
 	Route::resource('/user', 'UserController');
 
 });
