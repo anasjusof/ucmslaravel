@@ -49,6 +49,15 @@ License: You must have a valid license purchased only from themeforest(the above
 <link href="/assets/admin/layout/css/custom.css" rel="stylesheet" type="text/css"/>
 <!-- END THEME STYLES -->
 <link rel="shortcut icon" href="favicon.ico"/>
+
+<!-- Alertrify -->
+<script src="/assets/js/alertify.min.js"></script>
+<!-- include the style -->
+<link rel="stylesheet" href="/assets/css/alertify.min.css" />
+<!-- include a theme -->
+<link rel="stylesheet" href="/assets/css/themes/default.min.css" />
+
+@yield('head')
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->

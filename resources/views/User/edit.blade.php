@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('head')
+
+@stop
+
 @section('title')
     Edit User
 @stop
@@ -38,9 +42,15 @@
     	</div>
     	{{Form::close()}}
 
-    	@include('errors.validation-error')
+    	
     </div>
 </div>
 
+
+@stop
+
+@section('script')
+
+@include('errors.validation-error')
 
 @stop

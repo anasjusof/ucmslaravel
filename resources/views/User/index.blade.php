@@ -36,8 +36,8 @@
                             </a>
                         </td>
                         <td class="text-center"> 
-                            {!! Form::open(['method'=>'DELETE', 'action'=>['UserController@destroy', $user->id]]) !!}
-                                 {!! Form::submit('Delete', ['class'=>'btn btn-danger']) !!}
+                            {!! Form::open(['id'=>'form-delete' . $count, 'method'=>'DELETE', 'action'=>['UserController@destroy', $user->id]]) !!}
+                                 {!! Form::submit('Delete', ['id'=>$count, 'class'=>'btn btn-danger btn-delete']) !!}
                             {{Form::close()}}
                         </td>
                     </tr>
@@ -54,4 +54,27 @@
     </div>
 </div>
 
+@stop
+
+@section('script')
+<script>
+    $(document).ready(function(){
+        $(".btn-delete").on("click", function(event){
+            //Prevent button from submit
+            event.preventDefault();
+            //Get id from clicked class btn-delete
+            var id = this.id;
+            alertify.confirm('Delete User', 'Are you sure you want to delete user?', 
+                function(){
+                    //Set form-delete on id clicked
+                    $("#form-delete"+id).submit();
+                    return true;
+                },
+                function(){
+                    return true;
+                }
+            );
+        });
+    });
+</script>
 @stop

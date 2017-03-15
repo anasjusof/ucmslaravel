@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="portlet-body">
-    	{!! Form::open(['method'=>'POST', 'action'=>'UserController@store']) !!}
+    	{!! Form::open(['id'=>'form-create', 'method'=>'POST', 'action'=>'UserController@store']) !!}
     	<div class="form-body">
     		<div class='form-group'>
 		        {!! Form::label('name', 'Name : ') !!}
@@ -32,14 +32,36 @@
 		        {!! Form::select('roles_id', $roles, null, ['class'=>'form-control']) !!}
 		    </div>
 		     <div class="form-group text-center">
-		        {!! Form::submit('Create User', ['class'=>'btn red']) !!}
+		        {!! Form::submit('Create User', ['id'=>'btn-create', 'class'=>'btn red']) !!}
 		    </div>
     	</div>
     	{{Form::close()}}
 
-    	@include('errors.validation-error')
     </div>
 </div>
 
+
+@stop
+
+@section('script')
+
+	@include('errors.validation-error')
+	
+	<script>
+		$(document).ready(function(){
+		    $("#btn-create").on("click", function(event){
+			    event.preventDefault();
+			    alertify.confirm('Create User', 'Are you sure you want to create user?', 
+			    	function(){
+			            $("#form-create").submit();
+			            return true;
+			        },
+			        function(){
+			        	return true;
+			        }
+			    );
+			});
+		});
+	</script>
 
 @stop
