@@ -51,11 +51,15 @@ License: You must have a valid license purchased only from themeforest(the above
 <link rel="shortcut icon" href="favicon.ico"/>
 
 <!-- Alertrify -->
-<script src="/assets/js/alertify.min.js"></script>
+<script src="/assets/alertrify/js/alertify.min.js"></script>
 <!-- include the style -->
-<link rel="stylesheet" href="/assets/css/alertify.min.css" />
+<link rel="stylesheet" href="/assets/alertrify/css/alertify.min.css" />
 <!-- include a theme -->
-<link rel="stylesheet" href="/assets/css/themes/default.min.css" />
+<link rel="stylesheet" href="/assets/alertrify/css/themes/default.min.css" />
+
+<!-- Sweet Alert -->
+<script src="/assets/sweetalert2/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="/assets/sweetalert2/sweetalert2.min.css">
 
 @yield('head')
 </head>

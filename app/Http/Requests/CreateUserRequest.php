@@ -31,7 +31,7 @@ class CreateUserRequest extends Request
         {
             return [
                 'name'=>'required',
-                'email'=>'required | unique:users,email',
+                'email'=>'required | email | unique:users,email',
                 'password'=>'required | min:4',
             ];
         }
@@ -40,7 +40,7 @@ class CreateUserRequest extends Request
         {
             return [
                 'name'=>'required',
-                'email'=>'required',
+                'email'=>'required | email',
             ];
         }
         

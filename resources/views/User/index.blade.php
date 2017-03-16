@@ -32,7 +32,7 @@
                         <td> {{$user->email }} </td>
                         <td> {{$user->roles_id == 0 ? 'No Role' : $user->roles->name }} </td>
                         <td class="text-center">
-                            <a href="{{route('user.edit', $user->id)}}" class="btn blue" style="min-width: 70.25px">    Edit 
+                            <a id="btn-edit" href="{{route('user.edit', $user->id)}}" class="btn-edit btn blue" style="min-width: 70.25px">    Edit 
                             </a>
                         </td>
                         <td class="text-center"> 
@@ -59,22 +59,59 @@
 @section('script')
 <script>
     $(document).ready(function(){
+        /* Alertrify style */
+        // $(".btn-delete").on("click", function(event){
+        //     //Prevent button from submit
+        //     event.preventDefault();
+        //     //Get id from clicked class btn-delete
+        //     var id = this.id;
+        //     alertify.confirm('Delete User', 'Are you sure you want to delete user?', 
+        //         function(){
+        //             //Set form-delete on id clicked
+        //             $("#form-delete"+id).submit();
+        //             return true;
+        //         },
+        //         function(){
+        //             return true;
+        //         }
+        //     );
+        // });
+
+
+        /* Sweet alert style */
         $(".btn-delete").on("click", function(event){
-            //Prevent button from submit
-            event.preventDefault();
-            //Get id from clicked class btn-delete
-            var id = this.id;
-            alertify.confirm('Delete User', 'Are you sure you want to delete user?', 
-                function(){
-                    //Set form-delete on id clicked
-                    $("#form-delete"+id).submit();
-                    return true;
-                },
-                function(){
-                    return true;
-                }
-            );
+                //Prevent button from submit
+                event.preventDefault();
+                //Get id from clicked class btn-delete
+                var id = this.id;
+
+                swal({
+
+                    title: 'Delete user?',
+                    text: "You won't be able to revert this!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Delete'
+
+                }).then(function () {
+
+                    swal(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                    )
+
+                    //Delay for 1.3 sec before submit form
+                    setTimeout( function () {
+                        $("#form-delete"+id).submit();
+                    }, 1300);
+
+                })
+
         });
     });
+
 </script>
 @stop
